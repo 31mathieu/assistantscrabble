@@ -1,0 +1,462 @@
+/**
+ * Feuille de style CSS pour l'Assistant Scrabble
+ * 
+ * Ce fichier contient tous les styles utilisés pour l'interface utilisateur
+ * de l'application Assistant Scrabble. Il définit l'apparence visuelle
+ * des composants, la mise en page et les animations.
+ */
+
+/* Variables CSS globales pour la cohérence des couleurs */
+:root {
+    --primary: #3498db;
+    --primary-dark: #2980b9;
+    --secondary: #2ecc71;
+    --secondary-dark: #27ae60;
+    --danger: #e74c3c;
+    --warning: #f39c12;
+    --gray-dark: #333;
+    --gray: #666;
+    --gray-light: #ccc;
+    --gray-lighter: #f5f5f5;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    color: var(--gray-dark);
+    background-color: var(--gray-lighter);
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+h1 {
+    color: var(--primary);
+    margin-bottom: 15px;
+    font-size: 2.5rem;
+}
+
+.subtitle {
+    color: var(--gray);
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+.card-header {
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--gray-light);
+    padding-bottom: 15px;
+}
+
+.card-title {
+    font-size: 1.4rem;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.search-section {
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+input[type="text"],
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--gray-light);
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+select:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.25);
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-right: 10px;
+    transform: scale(1.2);
+}
+
+.button {
+    display: inline-block;
+    background-color: var(--primary);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.button:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.button:active {
+    transform: translateY(0);
+}
+
+.button:disabled {
+    background-color: var(--gray-light);
+    cursor: not-allowed;
+    transform: none;
+}
+
+.button-secondary {
+    background-color: var(--secondary);
+}
+
+.button-secondary:hover {
+    background-color: var(--secondary-dark);
+}
+
+.button-block {
+    display: block;
+    width: 100%;
+}
+
+.buttons-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.advanced-options {
+    margin-top: 20px;
+    border-top: 1px solid var(--gray-light);
+    padding-top: 20px;
+}
+
+.toggle-options {
+    color: var(--primary);
+    text-decoration: underline;
+    cursor: pointer;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.results-section .card-body {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.results-count {
+    margin-bottom: 15px;
+    font-weight: 600;
+    color: var(--gray);
+}
+
+.word-list {
+    list-style: none;
+}
+
+.word-item {
+    padding: 12px;
+    border-bottom: 1px solid var(--gray-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.word-item:last-child {
+    border-bottom: none;
+}
+
+.word {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.word-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.score {
+    background-color: var(--primary);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.google-link {
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.google-link:hover {
+    text-decoration: underline;
+}
+
+.scrabble-validation {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #27ae60;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.valid-icon {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    transition: all 0.2s ease;
+}
+
+.valid-icon:hover {
+    background-color: #e8f5e9;
+    border-color: #27ae60;
+}
+
+.definition-icon {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    transition: all 0.2s ease;
+}
+
+.definition-icon:hover {
+    background-color: #e3f2fd;
+    border-color: #2196f3;
+}
+
+.loading-indicator {
+    text-align: center;
+    padding: 20px;
+    display: none;
+}
+
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left: 4px solid var(--primary);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 15px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.error-message {
+    background-color: var(--danger);
+    color: white;
+    padding: 12px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    display: none;
+}
+
+.letter-tiles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.letter-tile {
+    width: 40px;
+    height: 40px;
+    background-color: #f0d9b5;
+    border: 1px solid #b58863;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    position: relative;
+    border-radius: 4px;
+}
+
+.letter-score {
+    position: absolute;
+    right: 2px;
+    bottom: 2px;
+    font-size: 10px;
+}
+
+.title-flags-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.language-selector {
+    display: flex;
+    gap: 10px;
+}
+
+.language-option {
+    cursor: pointer;
+}
+
+.language-option.active img {
+    border: 3px solid var(--primary);
+}
+
+.language-option img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.dictionary-status {
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    padding: 15px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.status-icon {
+    font-size: 1.5rem;
+}
+
+.status-text {
+    flex: 1;
+}
+
+.download-progress {
+    width: 100%;
+    height: 20px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    margin-top: 10px;
+    overflow: hidden;
+    display: none;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: var(--primary);
+    width: 0%;
+    transition: width 0.3s;
+}
+
+footer {
+    margin-top: 30px;
+    text-align: center;
+    color: var(--gray);
+    font-size: 0.9rem;
+    padding: 20px 0;
+    border-top: 1px solid var(--gray-light);
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+    .container {
+        flex-direction: row;
+    }
+    
+    .search-container {
+        flex: 1;
+    }
+    
+    .results-container {
+        flex: 1;
+    }
+}
+
+@media (max-width: 767px) {
+    .buttons-container {
+        flex-direction: column;
+    }
+    
+    .letter-tile {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+    
+    .dictionary-status {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.logo {
+    height: 60px;
+    margin: 0 10px;
+}

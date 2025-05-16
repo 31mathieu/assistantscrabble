@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!-- 
+    Assistant Scrabble - Interface utilisateur HTML
+    
+    Cette page web présente une interface simple et épurée pour l'assistant Scrabble,
+    permettant aux utilisateurs de rechercher des mots possibles à partir de lettres
+    disponibles en français ou en anglais.
+-->
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assistant Scrabble</title>
+    <!-- Feuille de style CSS pour l'apparence de l'application -->
+    <link rel="stylesheet" href="scrabble.css">
+    <!-- Script JavaScript principal pour la logique de l'application -->
+    <script src="scrabble.js"></script>
+</head>
+<body>
+    <div class="error-message" id="errorMessage"></div>
+    
+    <div class="search-container">
+        <div class="card">
+            <div class="card-header">
+                <div class="title-flags-container">
+                    <h2 class="card-title">Recherche de mots</h2>
+                    <div class="language-selector">
+                        <div class="language-option active" data-lang="francais" id="fr-option">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MDAgNjAwIj48cGF0aCBmaWxsPSIjZWQyOTM5IiBkPSJNMCAwaDkwMHY2MDBIMHoiLz48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMCAwaDYwMHY2MDBIMHoiLz48cGF0aCBmaWxsPSIjMDAyMzk1IiBkPSJNMCAwaDMwMHY2MDBIMHoiLz48L3N2Zz4=" alt="Français">
+                        </div>
+                        <div class="language-option" data-lang="english" id="en-option">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjM1IDY1MCI+PHBhdGggZmlsbD0iIzAxMjE2OSIgZD0iTTAgMGgxMjM1djY1MEgweiIvPjxwYXRoIGQ9Ik0wIDc1aDEyMzV2NTBIMHptMCAxNTBoMTIzNXY1MEgwem0wIDE1MGgxMjM1djUwSDB6bTAgMTUwaDEyMzV2NTBIMHoiIGZpbGw9IiNmZmYiLz48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMCAwaDQ5NHYzNTBIMHoiLz48cGF0aCBkPSJNMCA1MGg0OTR2NTBIMHptMCAxNTBoNDk0djUwSDB6bTAgMTUwaDQ5NHY1MEgweiIgZmlsbD0iIzAxMjE2OSIvPjwvc3ZnPg==" alt="English">
+                        </div>
+                    </div>
+                </div>
+                <p>Entrez vos lettres et trouvez tous les mots possibles</p>
+            </div>
+            <div class="card-body">
+                <div class="search-section">
+                    <div class="form-group">
+                        <label for="letterInput">Vos lettres (utilisez ? pour les jokers)</label>
+                        <input type="text" id="letterInput" placeholder="ex: AE?RSTW" maxlength="21" autocomplete="off">
+                        <div class="letter-tiles" id="letterTiles"></div>
+                    </div>
+                    
+                    <!-- Éléments cachés mais conservés pour la compatibilité JS -->
+                    <div style="display: none;">
+                        <input type="checkbox" id="hasJoker">
+                        <div id="advancedOptionsToggle"></div>
+                        <div id="advancedOptions" class="advanced-options">
+                            <select id="lengthFilter"><option value=""></option></select>
+                            <input type="checkbox" id="sortByScore" checked>
+                        </div>
+                        <button id="searchBtn"></button>
+                        <button id="resetBtn"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Résultats déplacés sous la recherche -->
+        <div class="card results-section">
+            <div class="card-header">
+                <h2 class="card-title">Résultats</h2>
+                <p class="results-count" id="resultsCount">Aucun résultat pour le moment</p>
+            </div>
+            <div class="loading-indicator" id="loadingIndicator">
+                <div class="spinner"></div>
+                <p>Recherche en cours...</p>
+            </div>
+            <div class="card-body">
+                <ul class="word-list" id="wordList"></ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Status des dictionnaires caché mais conservé pour compatibilité JS -->
+    <div class="dictionary-status" id="dictionaryStatus" style="display: none;">
+        <div class="status-icon" id="statusIcon"></div>
+        <div class="status-text">
+            <span id="loadingStatus"></span>
+            <div id="downloadProgress">
+                <div id="progressBar"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div style="display: none;">
+        <span id="dictionaryStats"></span>
+    </div>
+</body>
+</html>
