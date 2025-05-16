@@ -11,10 +11,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assistant Scrabble</title>
+    <!-- Métadonnées pour PWA -->
+    <meta name="description" content="Assistant pour trouver des mots au Scrabble à partir de lettres disponibles">
+    <meta name="theme-color" content="#3498db">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192x192.png">
     <!-- Feuille de style CSS pour l'apparence de l'application -->
     <link rel="stylesheet" href="scrabble.css">
     <!-- Script JavaScript principal pour la logique de l'application -->
     <script src="scrabble.js"></script>
+    <!-- Service Worker pour fonctionnement hors ligne -->
+    <script>
+        // Enregistrement du service worker pour le mode hors ligne
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('Service Worker enregistré!', reg))
+                    .catch(err => console.log('Erreur d\'enregistrement du Service Worker:', err));
+            });
+        }
+    </script>
 </head>
 <body>
     <div class="error-message" id="errorMessage"></div>
@@ -62,7 +78,10 @@
         <div class="card results-section">
             <div class="card-header">
                 <h2 class="card-title">Résultats</h2>
-                <p class="results-count" id="resultsCount">Aucun résultat pour le moment</p>
+                <div class="results-header-controls">
+                    <p class="results-count" id="resultsCount">Aucun résultat pour le moment</p>
+                    <button id="toggleSortBtn" class="sort-toggle-btn">Tri Score</button>
+                </div>
             </div>
             <div class="loading-indicator" id="loadingIndicator">
                 <div class="spinner"></div>

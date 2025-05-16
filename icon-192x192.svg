@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192">
+  <rect width="192" height="192" fill="#3498db" rx="32" ry="32"/>
+  <g fill="#ffffff">
+    <path d="M48,60 h96 v12 h-42 v60 h-12 v-60 h-42 z"/>
+    <path d="M48,132 h96 v12 h-96 z"/>
+    <text x="96" y="116" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold">SCRABBLE</text>
+  </g>
+</svg>

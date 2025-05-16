@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Variables de l'application
     let currentLanguage = 'francais'; // Par défaut : français
     let searchTimeout = null; // Pour la recherche automatique
+    let sortByWord = false; // Pour alterner entre tri par score et tri par mot
     
     // Points des lettres en français
     const letterScoresFR = {
@@ -304,10 +305,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Utiliser le nombre de jokers détecté au lieu de la checkbox
                     const results = findWordsWithLetters(dictionary, letters, jokerCount, null);
                     
-                    // Trier les résultats si nécessaire
-                    if (sortByScoreCheckbox.checked) {
+                    // Trier les résultats selon le mode choisi (mot ou score)
+                    if (sortByWord) {
+                        // Tri alphabétique
+                        results.sort((a, b) => a.localeCompare(b));
+                    } else if (sortByScoreCheckbox.checked) {
+                        // Tri par score décroissant
                         results.sort((a, b) => calculateWordScore(b) - calculateWordScore(a));
                     } else {
+                        // Tri par longueur puis alphabétique
                         results.sort((a, b) => b.length - a.length || a.localeCompare(b));
                     }
                     

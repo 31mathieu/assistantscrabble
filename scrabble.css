@@ -191,10 +191,32 @@ select:focus {
     overflow-y: auto;
 }
 
-.results-count {
+.results-header-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 15px;
+}
+
+.results-count {
     font-weight: 600;
     color: var(--gray);
+    margin: 0;
+}
+
+.sort-toggle-btn {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.sort-toggle-btn:hover {
+    background-color: var(--primary-dark);
 }
 
 .word-list {
@@ -202,7 +224,7 @@ select:focus {
 }
 
 .word-item {
-    padding: 12px;
+    padding: 6px 8px; /* Espacement réduit pour afficher plus de résultats */
     border-bottom: 1px solid var(--gray-light);
     display: flex;
     justify-content: space-between;
