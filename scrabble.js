@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Variables de l'application
     let currentLanguage = 'francais'; // Par défaut : français
     let searchTimeout = null; // Pour la recherche automatique
-    let sortByWord = false; // Pour alterner entre tri par score et tri par mot
+    let sortByWord = false; // Tri par score par défaut (false = tri par score, true = tri par mot)
     
     // Points des lettres en français
     const letterScoresFR = {
@@ -69,6 +69,21 @@ document.addEventListener('DOMContentLoaded', function() {
         updateLetterTiles();
         triggerAutoSearch();
     });
+    
+    // Écouteur pour le bouton de tri
+    const toggleSortBtn = document.getElementById('toggleSortBtn');
+    if (toggleSortBtn) {
+        toggleSortBtn.addEventListener('click', function() {
+            sortByWord = !sortByWord;
+            // Mettre à jour le texte du bouton en fonction du mode de tri actif
+            toggleSortBtn.textContent = sortByWord ? 'Tri Score' : 'Tri Mot';
+            
+            // Refaire la recherche avec le nouveau mode de tri
+            if (letterInput.value.trim().length > 0) {
+                searchWords();
+            }
+        });
+    }
     
     // Déclencher une recherche automatique après 2 secondes d'inactivité
     function triggerAutoSearch() {
