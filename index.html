@@ -55,7 +55,17 @@
                 <div class="search-section">
                     <div class="form-group">
                         <label for="letterInput">Vos lettres (utilisez ? pour les jokers)</label>
-                        <input type="text" id="letterInput" placeholder="ex: AE?RSTW" maxlength="21" autocomplete="off">
+                        <div class="input-with-icons">
+                            <input type="text" id="letterInput" placeholder="ex: AE?RSTW" maxlength="21" autocomplete="off">
+                            <div class="input-actions">
+                                <a id="definitionBtn" href="#" class="input-icon-btn" title="Rechercher la définition">
+                                    <span class="definition-icon">📚</span>
+                                </a>
+                                <a id="checkWordBtn" href="#" class="input-icon-btn" title="Vérifier la validité au Scrabble">
+                                    <span class="valid-icon">✓?</span>
+                                </a>
+                            </div>
+                        </div>
                         <div class="letter-tiles" id="letterTiles"></div>
                     </div>
                     

@@ -28,6 +28,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const advancedOptions = document.getElementById('advancedOptions');
     const loadingIndicator = document.getElementById('loadingIndicator');
     const resultsCount = document.getElementById('resultsCount');
+    const checkWordBtn = document.getElementById('checkWordBtn');
+    const definitionBtn = document.getElementById('definitionBtn');
     const wordList = document.getElementById('wordList');
     const errorMessage = document.getElementById('errorMessage');
     const dictionaryStats = document.getElementById('dictionaryStats');
@@ -108,6 +110,46 @@ document.addEventListener('DOMContentLoaded', function() {
     hasJokerCheckbox.addEventListener('change', triggerAutoSearch);
     lengthFilter.addEventListener('change', triggerAutoSearch);
     sortByScoreCheckbox.addEventListener('change', triggerAutoSearch);
+    
+    // Écouteurs d'événements pour les boutons d'action à côté de l'input
+    checkWordBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const word = letterInput.value.trim().toUpperCase();
+        if (word) {
+            // Utiliser le même lien Google que dans la zone de résultats
+            let validationUrl;
+            if (currentLanguage === 'francais') {
+                validationUrl = `https://www.google.com/search?q=${encodeURIComponent(word + ' est valide au scrabble francophone')}`;
+            } else {
+                validationUrl = `https://www.google.com/search?q=${encodeURIComponent(word + ' is valid in english scrabble')}`;
+            }
+            
+            // Ouvre dans un nouvel onglet
+            window.open(validationUrl, '_blank');
+        } else {
+            showError("Veuillez entrer un mot à vérifier");
+        }
+    });
+    
+    definitionBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const word = letterInput.value.trim();
+        if (word) {
+            // Utiliser le même lien Google que dans la zone de résultats
+            let searchTerm;
+            if (currentLanguage === 'francais') {
+                searchTerm = 'définition ' + word;
+            } else {
+                searchTerm = 'definition ' + word;
+            }
+            const definitionUrl = `https://www.google.com/search?q=${encodeURIComponent(searchTerm)}`;
+            
+            // Ouvre dans un nouvel onglet
+            window.open(definitionUrl, '_blank');
+        } else {
+            showError("Veuillez entrer un mot à définir");
+        }
+    });
     
     // Écouteurs pour le changement de langue
     frOption.addEventListener('click', function() {
